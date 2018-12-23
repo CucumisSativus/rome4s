@@ -1,62 +1,67 @@
 package net.cucumbersome.rome4s
 
-import java.time.LocalDateTime
+import java.util.Date
 
+import cats.data.NonEmptyList
 import net.cucumbersome.rome4s.RichSyndFeed.{RichSyndEntry, RichSyndLink}
 
 case class RichSyndFeed(
-                       encoding: Option[String],
-                       title: Option[String],
-                       description: Option[String],
-                       feedType: String,
-                       link: String,
-                       webMaster: Option[String],
-                       managingEditor: Option[String],
-                       docs: Option[String],
-                       generator: Option[String],
-                       styleSheet: Option[String],
-                       links: List[RichSyndLink],
-                       icon: Option[String],
-                       image: Option[String],
-                       entries: List[RichSyndEntry]
+                         encoding: Option[String],
+                         title: Option[String],
+                         description: Option[String],
+                         feedType: Option[String],
+                         link: Option[String],
+                         webMaster: Option[String],
+                         author: Option[String],
+                         docs: Option[String],
+                         links: Option[NonEmptyList[RichSyndLink]],
+                         entries: Option[NonEmptyList[RichSyndEntry]]
                        )
 
-object RichSyndFeed{
+object RichSyndFeed {
+
   case class RichSyndLink(
-                         href: String,
-                         ref: String,
-                         `type`: String,
-                         hreflang: Option[String],
-                         title: Option[String]
+                           href: Option[String],
+                           rel: Option[String],
+                           `type`: Option[String],
+                           hreflang: Option[String],
+                           title: Option[String],
+                           length: Long
                          )
 
   case class RichSyndEntry(
-                          uri: String,
-                          link: String,
-                          comments: Option[String],
-                          updateDate: LocalDateTime,
-                          title: RichSyndContent,
-                          description: RichSyndContent,
-                          links: List[RichSyndLink],
-                          contents: List[RichSyndContent],
-                          entries: List[RichSyndEntry],
-                          authors: List[RichSyndPerson],
-                          categories: List[RichSyndCategory]
+                            uri: Option[String],
+                            link: Option[String],
+                            comments: Option[String],
+                            updateDate: Option[Date],
+                            title: Option[String],
+                            description: Option[RichSyndContent],
+                            links: Option[NonEmptyList[RichSyndLink]],
+                            contents: Option[NonEmptyList[RichSyndContent]],
+                            authors: Option[NonEmptyList[RichSyndPerson]],
+                            categories: Option[NonEmptyList[RichSyndCategory]]
                           )
+
   case class RichSyndContent(
-                            `type`: String,
-                            value: String
+                              `type`: String,
+                              value: String,
+                              mode: String
                             )
+
   case class RichSyndPerson(
-                           name: String,
-                           uri: String,
-                           email: Option[String]
+                             name: String,
+                             uri: String,
+                             email: Option[String]
                            )
+
   case class RichDCSubject(
-                          taxonomyUri: String,
-                          value: String,
+                            taxonomyUri: Option[String],
+                            value: Option[String],
                           )
+
   case class RichSyndCategory(
-                              subject: RichDCSubject
+                               taxonomyUri: Option[String],
+                               name: Option[String],
                              )
+
 }
