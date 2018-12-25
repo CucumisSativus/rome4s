@@ -5,15 +5,16 @@ version := "0.1"
 scalaVersion := "2.12.7"
 
 libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-effect" % "1.0.0",
-  "com.rometools" % "rome" % "1.11.1",
-  "org.specs2" %% "specs2-core" % "4.3.4" % "test",
-  "org.specs2" %% "specs2-scalacheck" % "4.3.4" % "test"
+  "org.typelevel" %% "cats-effect"       % "1.0.0",
+  "com.rometools" % "rome"               % "1.11.1",
+  "org.specs2"    %% "specs2-core"       % "4.3.4" % "test",
+  "org.specs2"    %% "specs2-scalacheck" % "4.3.4" % "test"
 )
 
 scalacOptions ++= Seq(
   "-deprecation",
-  "-encoding", "utf-8",
+  "-encoding",
+  "utf-8",
   "-explaintypes",
   "-feature",
   "-language:existentials",
@@ -59,3 +60,9 @@ scalacOptions ++= Seq(
   "-Ywarn-value-discard",
   "-Yrangepos"
 )
+
+// scala fmt
+addCommandAlias("fmtCheck",
+                "; compile:scalafmtCheck; test:scalafmtCheck; scalafmtSbtCheck")
+
+addCommandAlias("ci", "; fmtCheck ; test")
