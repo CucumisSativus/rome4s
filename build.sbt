@@ -62,8 +62,7 @@ scalacOptions ++= Seq(
 )
 
 // scala fmt
-addCommandAlias(
-    "fmtCheck",
-    "; compile:scalafmtCheck; test:scalafmtCheck; scalafmtSbtCheck")
+addCommandAlias("fmtCheck",
+                "; compile:scalafmtCheck; test:scalafmtCheck; scalafmtSbtCheck")
 
 addCommandAlias("ci", "; fmtCheck ; test")
