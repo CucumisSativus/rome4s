@@ -18,7 +18,6 @@ case class RichSyndFeed(
                          links: List[RichSyndLink],
                          entries: List[RichSyndEntry],
                          original: SyndFeed
-
                        )
 
 object RichSyndFeed {

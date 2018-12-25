@@ -11,10 +11,10 @@ trait RichSyndFeedInput[F[_]] {
 
 object RichSyndFeedInput {
 
-  def build[F[_]](fi: RichSyndFeedInput[F])(reader: Reader)(implicit F: MonadError[F, RichSyndBuilderError]): F[RichSyndFeed] = {
+  def build[F[_]](fi: RichSyndFeedInput[F])(reader: Reader)(
+    implicit F: MonadError[F, RichSyndBuilderError]): F[RichSyndFeed] = {
     F.map(fi.build(reader))(SyndFeedToRichSyndFeedParser.parse)
   }
-
 
   sealed trait RichSyndBuilderError
 

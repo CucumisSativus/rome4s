@@ -8,26 +8,39 @@ import net.cucumbersome.rome4s.test.Generators
 import org.specs2._
 import org.specs2.mutable.Specification
 
-class SyndFeedToRichSyndFeedParserTest extends Specification with ScalaCheck with Generators {
+class SyndFeedToRichSyndFeedParserTest
+  extends Specification
+    with ScalaCheck
+    with Generators {
   "This is the specification of synd feed parser".txt
 
   "Parsing DCSubject" >> prop { dcSubject: DCSubject =>
-    val expected = RichDCSubject(Option(dcSubject.getTaxonomyUri), Option(dcSubject.getValue), dcSubject)
+    val expected = RichDCSubject(Option(dcSubject.getTaxonomyUri),
+      Option(dcSubject.getValue),
+      dcSubject)
     parseDcSubject(dcSubject) should_=== expected
   }
 
   "Parsing person" >> prop { syndPerson: SyndPerson =>
-    val expected = RichSyndPerson(syndPerson.getName, syndPerson.getUri, Option(syndPerson.getEmail), syndPerson)
+    val expected = RichSyndPerson(syndPerson.getName,
+      syndPerson.getUri,
+      Option(syndPerson.getEmail),
+      syndPerson)
     parseSyndPerson(syndPerson) should_=== expected
   }
 
   "Parsing content" >> prop { syndContent: SyndContent =>
-    val expected = RichSyndContent(syndContent.getType, syndContent.getValue, syndContent.getMode, syndContent)
+    val expected = RichSyndContent(syndContent.getType,
+      syndContent.getValue,
+      syndContent.getMode,
+      syndContent)
     parseSyndContent(syndContent) should_=== expected
   }
 
   "Parsing syndCategory" >> prop { syndCategory: SyndCategory =>
-    val expected = RichSyndCategory(Option(syndCategory.getTaxonomyUri), Option(syndCategory.getName), syndCategory)
+    val expected = RichSyndCategory(Option(syndCategory.getTaxonomyUri),
+      Option(syndCategory.getName),
+      syndCategory)
     parseSyndCategory(syndCategory) should_=== expected
   }
 }

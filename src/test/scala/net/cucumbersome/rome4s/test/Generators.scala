@@ -5,7 +5,8 @@ import com.rometools.rome.feed.synd._
 import org.scalacheck.{Arbitrary, Gen}
 
 trait Generators {
-  private val optionStringGen: Gen[Option[String]] = Arbitrary.arbitrary[Option[String]]
+  private val optionStringGen: Gen[Option[String]] =
+    Arbitrary.arbitrary[Option[String]]
   private val stringGen: Gen[String] = Arbitrary.arbitrary[String]
 
   val dcSubjectGenerator: Gen[DCSubject] = for {
@@ -69,10 +70,10 @@ trait Generators {
     a
   }
 
-
   implicit val subjectArb: Arbitrary[DCSubject] = Arbitrary(dcSubjectGenerator)
   implicit val personArb: Arbitrary[SyndPerson] = Arbitrary(syndPerson)
   implicit val contentArb: Arbitrary[SyndContent] = Arbitrary(syndContent)
-  implicit val syndCategoryArb: Arbitrary[SyndCategory] = Arbitrary(syndCategory)
+  implicit val syndCategoryArb: Arbitrary[SyndCategory] = Arbitrary(
+    syndCategory)
   implicit val syndLinkArb: Arbitrary[SyndLink] = Arbitrary(syndLink)
 }
