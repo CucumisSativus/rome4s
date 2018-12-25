@@ -11,7 +11,7 @@ trait Generators {
 
   val dcSubjectGenerator: Gen[DCSubject] = for {
     taxonomyUri <- optionStringGen
-    value <- optionStringGen
+    value       <- optionStringGen
   } yield {
     val a = new DCSubjectImpl()
     a.setTaxonomyUri(taxonomyUri.orNull)
@@ -20,8 +20,8 @@ trait Generators {
   }
 
   val syndPerson: Gen[SyndPerson] = for {
-    name <- stringGen
-    uri <- stringGen
+    name  <- stringGen
+    uri   <- stringGen
     email <- optionStringGen
   } yield {
     val a = new SyndPersonImpl
@@ -32,9 +32,9 @@ trait Generators {
   }
 
   val syndContent: Gen[SyndContent] = for {
-    typ <- stringGen
+    typ   <- stringGen
     value <- stringGen
-    mode <- stringGen
+    mode  <- stringGen
   } yield {
     val a = new SyndContentImpl()
     a.setMode(mode)
@@ -53,12 +53,12 @@ trait Generators {
   }
 
   val syndLink: Gen[SyndLink] = for {
-    href <- optionStringGen
-    rel <- optionStringGen
-    typ <- optionStringGen
+    href     <- optionStringGen
+    rel      <- optionStringGen
+    typ      <- optionStringGen
     hreflang <- optionStringGen
-    title <- optionStringGen
-    length <- Arbitrary.arbitrary[Long]
+    title    <- optionStringGen
+    length   <- Arbitrary.arbitrary[Long]
   } yield {
     val a = new SyndLinkImpl
     a.setHref(href.orNull)
