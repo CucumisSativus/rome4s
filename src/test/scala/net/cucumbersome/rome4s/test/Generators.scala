@@ -70,8 +70,8 @@ trait Generators {
     a
   }
 
-  implicit val subjectArb: Arbitrary[DCSubject] = Arbitrary(dcSubjectGenerator)
-  implicit val personArb: Arbitrary[SyndPerson] = Arbitrary(syndPerson)
+  implicit val subjectArb: Arbitrary[DCSubject]   = Arbitrary(dcSubjectGenerator)
+  implicit val personArb: Arbitrary[SyndPerson]   = Arbitrary(syndPerson)
   implicit val contentArb: Arbitrary[SyndContent] = Arbitrary(syndContent)
   implicit val syndCategoryArb: Arbitrary[SyndCategory] = Arbitrary(
     syndCategory)
