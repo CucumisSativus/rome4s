@@ -63,7 +63,7 @@ object SyndFeedToRichSyndFeedParser {
     )
 
   private[rome4s] def parseSyndCategory(
-                                         category: SyndCategory): RichSyndCategory =
+    category: SyndCategory): RichSyndCategory =
     RichSyndCategory(
       taxonomyUri = Option(category.getTaxonomyUri),
       name = Option(category.getName),
@@ -82,8 +82,8 @@ object SyndFeedToRichSyndFeedParser {
     )
 
   private[rome4s] def javaListToOptionOfNel[JavaModel, ScalaModel](
-                                                                    convert: JavaModel => ScalaModel)(
-                                                                    list: JList[JavaModel]): List[ScalaModel] = {
+    convert: JavaModel => ScalaModel)(
+    list: JList[JavaModel]): List[ScalaModel] = {
     Option(list)
       .map(_.asScala.toList)
       .map(_.map(convert))

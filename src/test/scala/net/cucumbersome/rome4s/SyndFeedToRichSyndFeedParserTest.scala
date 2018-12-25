@@ -9,38 +9,46 @@ import org.specs2._
 import org.specs2.mutable.Specification
 
 class SyndFeedToRichSyndFeedParserTest
-  extends Specification
+    extends Specification
     with ScalaCheck
     with Generators {
   "This is the specification of synd feed parser".txt
 
   "Parsing DCSubject" >> prop { dcSubject: DCSubject =>
-    val expected = RichDCSubject(Option(dcSubject.getTaxonomyUri),
+    val expected = RichDCSubject(
+      Option(dcSubject.getTaxonomyUri),
       Option(dcSubject.getValue),
-      dcSubject)
+      dcSubject
+    )
     parseDcSubject(dcSubject) should_=== expected
   }
 
   "Parsing person" >> prop { syndPerson: SyndPerson =>
-    val expected = RichSyndPerson(syndPerson.getName,
+    val expected = RichSyndPerson(
+      syndPerson.getName,
       syndPerson.getUri,
       Option(syndPerson.getEmail),
-      syndPerson)
+      syndPerson
+    )
     parseSyndPerson(syndPerson) should_=== expected
   }
 
   "Parsing content" >> prop { syndContent: SyndContent =>
-    val expected = RichSyndContent(syndContent.getType,
+    val expected = RichSyndContent(
+      syndContent.getType,
       syndContent.getValue,
       syndContent.getMode,
-      syndContent)
+      syndContent
+    )
     parseSyndContent(syndContent) should_=== expected
   }
 
   "Parsing syndCategory" >> prop { syndCategory: SyndCategory =>
-    val expected = RichSyndCategory(Option(syndCategory.getTaxonomyUri),
+    val expected = RichSyndCategory(
+      Option(syndCategory.getTaxonomyUri),
       Option(syndCategory.getName),
-      syndCategory)
+      syndCategory
+    )
     parseSyndCategory(syndCategory) should_=== expected
   }
 }
