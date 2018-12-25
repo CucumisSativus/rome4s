@@ -2,7 +2,12 @@ package net.cucumbersome.rome4s
 
 import com.rometools.rome.feed.module.DCSubject
 import com.rometools.rome.feed.synd.{SyndCategory, SyndContent, SyndPerson}
-import net.cucumbersome.rome4s.RichSyndFeed.{RichDCSubject, RichSyndCategory, RichSyndContent, RichSyndPerson}
+import net.cucumbersome.rome4s.RichSyndFeed.{
+  RichDCSubject,
+  RichSyndCategory,
+  RichSyndContent,
+  RichSyndPerson
+}
 import net.cucumbersome.rome4s.SyndFeedToRichSyndFeedParser._
 import net.cucumbersome.rome4s.test.Generators
 import org.specs2._
