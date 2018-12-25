@@ -2,7 +2,8 @@ package net.cucumbersome.rome4s
 
 import java.util.Date
 
-import cats.data.NonEmptyList
+import com.rometools.rome.feed.module.DCSubject
+import com.rometools.rome.feed.synd._
 import net.cucumbersome.rome4s.RichSyndFeed.{RichSyndEntry, RichSyndLink}
 
 case class RichSyndFeed(
@@ -14,8 +15,10 @@ case class RichSyndFeed(
                          webMaster: Option[String],
                          author: Option[String],
                          docs: Option[String],
-                         links: Option[NonEmptyList[RichSyndLink]],
-                         entries: Option[NonEmptyList[RichSyndEntry]]
+                         links: List[RichSyndLink],
+                         entries: List[RichSyndEntry],
+                         original: SyndFeed
+
                        )
 
 object RichSyndFeed {
@@ -26,7 +29,8 @@ object RichSyndFeed {
                            `type`: Option[String],
                            hreflang: Option[String],
                            title: Option[String],
-                           length: Long
+                           length: Long,
+                           original: SyndLink
                          )
 
   case class RichSyndEntry(
@@ -36,32 +40,37 @@ object RichSyndFeed {
                             updateDate: Option[Date],
                             title: Option[String],
                             description: Option[RichSyndContent],
-                            links: Option[NonEmptyList[RichSyndLink]],
-                            contents: Option[NonEmptyList[RichSyndContent]],
-                            authors: Option[NonEmptyList[RichSyndPerson]],
-                            categories: Option[NonEmptyList[RichSyndCategory]]
+                            links: List[RichSyndLink],
+                            contents: List[RichSyndContent],
+                            authors: List[RichSyndPerson],
+                            categories: List[RichSyndCategory],
+                            original: SyndEntry
                           )
 
   case class RichSyndContent(
                               `type`: String,
                               value: String,
-                              mode: String
+                              mode: String,
+                              original: SyndContent
                             )
 
   case class RichSyndPerson(
                              name: String,
                              uri: String,
-                             email: Option[String]
+                             email: Option[String],
+                             original: SyndPerson
                            )
 
   case class RichDCSubject(
                             taxonomyUri: Option[String],
                             value: Option[String],
+                            original: DCSubject
                           )
 
   case class RichSyndCategory(
                                taxonomyUri: Option[String],
                                name: Option[String],
+                               original: SyndCategory
                              )
 
 }
